@@ -28,15 +28,20 @@ def process_wheel(path):
     else:
         path_to_file = os.path.join(cwd, path)
 
-    with zipfile.ZipFile(path_to_file, 'rb') as zip_f:
+    print('Processing %s' % (path_to_file, ))
+
+    with zipfile.ZipFile(path_to_file, 'r') as zip_f:
         zip_f.extractall()
 
     for so_file in find_so('.'):
         os.system('strip %s' % (so_file, ))
 
-    with zipfile.ZipFile(path_to_file, 'wb') as zip_f:
+    with zipfile.ZipFile(path_to_file, 'w') as zip_f:
         for file in find_all('.'):
             zip_f.write(file, compress_type=zipfile.ZIP_DEFLATED)
+
+    os.chdir(cwd)
+    shutil.rmtree(tempdir)
 
 
 def run():
