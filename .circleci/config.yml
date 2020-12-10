@@ -18,6 +18,7 @@ jobs:
             ls -l
             doctor-wheel *.whl
             ls -l
+            pip install *.whl
           name: Install and test
 
 workflows:
