@@ -10,12 +10,22 @@ doctor_wheel
 `doctor-wheel` is an utility to reduce the size of your binary wheels
 by stripping their .so extensions.
 
-It requires GNU strip to be available.
+It requires GNU strip to be available, and will refuse to run 
+if it is not found.
 
 It will alter your file in-place.
 
-Usage:
+# Usage
 
 ```
 doctor-wheel name-of-your-wheel-file.whl name-of-second-wheel-file.whl ...
+```
+
+You can provide as many wheel files as you want. 
+They will be altered in place though. The files will be unzipped to a temporary directory.
+
+# Installation
+
+```
+pip install doctor-wheel
 ```
