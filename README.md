@@ -31,6 +31,6 @@ pip install doctor-wheel
 
 # Change log
 
-## v1.1:
+## v1.2:
 
 * dropped satella requirement, so made available for Python 2.7

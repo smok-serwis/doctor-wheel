@@ -1,4 +1,12 @@
 from __future__ import print_function
+try:
+    from shutil import which
+except ImportError:
+    def which(name):
+        for path_dir in os.environ['PATH'].split(':'):
+            if name in os.listdir(path_dir):
+                return True
+        return False
 import shutil
 import sys
 import os
@@ -54,7 +62,7 @@ def run():
               'Files will be updated in place.', file=sys.stderr)
         sys.exit(1)
 
-    if not shutil.which('strip'):
+    if not which('strip'):
         print('This required strip to be installed', file=sys.stderr)
         sys.exit(1)
 
