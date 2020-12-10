@@ -8,12 +8,11 @@ doctor_wheel
 [![Build status](https://circleci.com/gh/smok-serwis/doctor-wheel.svg?style=shield)](https://app.circleci.com/pipelines/github/smok-serwis/doctor-wheel)
 
 `doctor-wheel` is an utility to reduce the size of your binary wheels
-by stripping their .so extensions.
+by stripping their .so extensions
+with [GNU strip](https://sourceware.org/binutils/docs/binutils/strip.html)
 
-It requires GNU strip to be available, and will refuse to run 
+It requires `strip` to be available in PATH, and will refuse to run 
 if it is not found.
-
-It will alter your file in-place.
 
 # Usage
 
@@ -29,3 +28,9 @@ They will be altered in place though. The files will be unzipped to a temporary 
 ```
 pip install doctor-wheel
 ```
+
+# Change log
+
+## v1.1:
+
+* dropped satella requirement, so made available for Python 2.7

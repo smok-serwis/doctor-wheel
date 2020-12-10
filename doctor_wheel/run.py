@@ -1,20 +1,21 @@
+from __future__ import print_function
 import shutil
 import sys
 import os
 import tempfile
 import zipfile
-import typing as tp
 
 
-from satella.files import find_files
+def find_all(path):
+    for dirpath, dirnames, filenames in os.walk(path):
+        for filename in filenames:
+            yield os.path.join(dirpath, filename)
 
 
-def find_so(*path) -> tp.List[str]:
-    return list(find_files(os.path.join(*path), r'(.*)\.so', scan_subdirectories=True))
-
-
-def find_all(*path) -> tp.List[str]:
-    return list(find_files(os.path.join(*path), r'(.*)', scan_subdirectories=True))
+def find_so(path):
+    for filename in find_all(path):
+        if filename.lower().endswith('.so'):
+            yield filename
 
 
 def process_wheel(path):
@@ -46,7 +47,7 @@ def process_wheel(path):
 
 def run():
     try:
-        path = sys.argv[1]
+        sys.argv[1]
     except IndexError:
         print('Usage:'
               'doctor-wheel <path to whl1 file> <path to whl2 file> ...'
