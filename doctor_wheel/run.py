@@ -62,7 +62,11 @@ def run():
             print('%s is not a file aborting' % (wheel_path, ), sys=sys.stderr)
             sys.exit(1)
 
+    cwd = os.getcwd()
+
     for wheel_path in sys.argv[1:]:
         process_wheel(wheel_path)
+
+    os.chdir(cwd)
 
     sys.exit(0)

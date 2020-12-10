@@ -15,7 +15,9 @@ jobs:
           command: |
             sudo python setup.py install
             pip wheel cryptography
+            ls -l
             doctor-wheel *.whl
+            ls -l
           name: Install and test
 
 workflows:
